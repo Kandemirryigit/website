@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern CSS Reset & Box Sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background: #f8fafc;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevents horizontal scroll from animations */
+        }
+
+        header {
+            background: linear-gradient(to right, #1e293b, #0f172a);
+            color: #fff;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.75rem;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #e2e8f0;
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        #search-bar {
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            border: 1px solid #475569;
+            outline: none;
+            background: #1e293b;
+            color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #search-bar:focus {
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Section Animation */
+        .section-animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .section-animated.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .product {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .hidden-product {
+            display: none;
+        }
+
+        .product img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .product p {
+            margin: 0;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+
+        .product-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .product-buttons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background: #f8fafc;
+        }
+
+        .product-buttons a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-buttons img {
+            width: 1.75rem;
+            height: 1.75rem;
+            object-fit: contain;
+        }
+
+        section {
+            margin-top: 4rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e293b;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        #showMoreBtn {
+            display: block;
+            margin: 2rem auto;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #3b82f6;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        #showMoreBtn:hover {
+            background-color: #2563eb;
+            transform: translateY(-0.125rem);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .location-btn {
+            display: inline-block;
+            margin-top: 1.25rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: #4285F4;
+            border: none;
+            border-radius: 9999px;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .location-btn:hover {
+            background-color: #357ae8;
+            transform: translateY(-0.125rem);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            margin-top: 4rem;
+            background: #1e293b;
+            color: #94a3b8;
+            text-align: center;
+            padding: 1.25rem;
+            font-size: 0.875rem;
+        }
+
+        /* --- RESPONSIVE STYLES --- */
+        @media screen and (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+            }
+            
+            header div {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            nav {
+                margin: 0.5rem 0;
+            }
+
+            nav a {
+                margin: 0 0.5rem;
+                font-size: 0.875rem;
+            }
+
+            #search-bar {
+                width: 80%;
+                margin-top: 0.5rem;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+
+            section h2 {
+                font-size: 1.75rem;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+        
+        /* Smaller devices like phones */
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.25rem;
+            }
+
+            nav a {
+                display: block;
+                margin: 0.25rem 0;
+            }
+            
+            #search-bar {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>İKİNCİ EL DÜKKANI</h1>
+        <div style="display: flex; align-items: center;">
+            <nav>
+                <a href="#products">Ürünler</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#contact">İletişim</a>
+                <a href="#konumumuz">📍 Konumumuz</a>
+            </nav>
+            <input type="text" id="search-bar" placeholder="Ürün Ara..." onkeyup="searchProducts()" style="margin-left: 15px;">
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="products" class="section-animated">
+            <h2>Ürünlerimiz</h2>
+            <div class="products" id="product-list">
+                <div class="product">
+                    <img src="pictures/kapı2.webp" alt="Second Hand Wooden Door">
+                    <div class="product-details">
+                        <h3>Ahşap Kapı</h3>
+                        <p>$19.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="pictures/pencere.webp" alt="Used Modern Chair">
+                    <div class="product-details">
+                        <h3>pencere</h3>
+                        <p>$29.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product">
+                    <img src="pictures/kapı.jpg" alt="Pre-owned Vintage Table">
+                    <div class="product-details">
+                        <h3>çelik kapı</h3>
+                        <p>$39.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product hidden-product">
+                    <img src="pictures/kapı.jpg" alt="Extra Product 1">
+                    <div class="product-details">
+                        <h3>Ekstra Ürün 1</h3>
+                        <p>$49.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product hidden-product">
+                    <img src="pictures/kapı.jpg" alt="Extra Product 2">
+                    <div class="product-details">
+                        <h3>Ekstra Ürün 2</h3>
+                        <p>$59.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product hidden-product">
+                    <img src="pictures/kapı.jpg" alt="Extra Product 3">
+                    <div class="product-details">
+                        <h3>Ekstra Ürün 3</h3>
+                        <p>$69.99</p>
+                        <div class="product-buttons">
+                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
+                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                            </a>
+                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
+                                <img src="pictures/letgo.png" alt="Letgo Logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <button id="showMoreBtn" onclick="showMoreProducts()">Daha Fazla Göster</button>
+
+        </section>
+
+        <section id="about" class="section-animated">
+            <h2>Hakkımızda</h2>
+            <p style="text-align: center;">Uygun fiyatlarla kaliteli ikinci el ürünler sunuyoruz. Kataloğumuzu keşfedin ve sizin için mükemmel olan ürünleri bulun.</p>
+        </section>
+
+        <section id="contact" class="section-animated">
+            <h2>İletişim</h2>
+            <p style="text-align: center;">E-posta: kandemirryigit@gmail.com</p>
+            <p style="text-align: center;">WhatsApp: 0537 210 0278</p>
+        </section>
+        
+        <section id="konumumuz" class="section-animated">
+            <h2>Konumumuz</h2>
+            <div style="text-align: center;">
+                <a href="https://www.google.com/maps/search/?api=1&query=Akşemseddin+Mh,+Kazım+Karabekir+Cd.,+34510+Esenyurt/İstanbul" target="_blank" class="location-btn">Google Maps'te Konumu Görüntüle</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 İKİNCİ EL DÜKKANI. Tüm hakları saklıdır.</p>
+    </footer>
+
+    <script>
+        function searchProducts() {
+            const input = document.getElementById('search-bar').value.toLowerCase().trim();
+            const products = document.getElementById('product-list').getElementsByClassName('product');
+
+            for (let i = 0; i < products.length; i++) {
+                const title = products[i].querySelector('h3').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    products[i].style.display = '';
+                } else {
+                    products[i].style.display = 'none';
+                }
+            }
+        }
+
+        function showMoreProducts() {
+            const hiddenProducts = document.querySelectorAll('.hidden-product');
+            const showMoreBtn = document.getElementById('showMoreBtn');
+
+            hiddenProducts.forEach(product => {
+                product.classList.remove('hidden-product');
+            });
+            
+            showMoreBtn.style.display = 'none';
+        }
+        
+        // Intersection Observer for section animations
+        const sections = document.querySelectorAll('.section-animated');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.25
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
