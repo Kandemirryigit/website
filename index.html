@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Shop</title>
+    <title>İkinci El Dükkanı - Kaliteli İkinci El Ürünler | İstanbul Esenyurt</title>
+    <meta name="description" content="İstanbul Esenyurt'ta kaliteli ikinci el kapı, pencere ve mobilya ürünleri. Uygun fiyatlarla kaliteli ürünler için bizi arayın: 0537 210 0278">
+    <meta name="keywords" content="ikinci el, kapı, pencere, mobilya, İstanbul, Esenyurt, uygun fiyat">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +27,87 @@
             color: #333;
             line-height: 1.6;
             overflow-x: hidden; /* Prevents horizontal scroll from animations */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .cta-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-btn.primary {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        .cta-btn.primary:hover {
+            background: #059669;
+            border-color: #059669;
         }
 
         header {
@@ -138,21 +221,56 @@
             color: #1e293b;
         }
 
-        .product p {
-            margin: 0;
-            font-size: 1.125rem;
+        .product .price {
+            margin: 0 0 1rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: #3b82f6;
+            color: #10b981;
         }
 
-        .product-buttons {
+        .product .description {
+            margin: 0 0 1.5rem;
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .product-actions {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             gap: 0.75rem;
             margin-top: 1.25rem;
         }
 
-        .product-buttons a {
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: #10b981;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .contact-btn:hover {
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .marketplace-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .marketplace-links a {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -162,17 +280,27 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             background: #f8fafc;
+            border: 2px solid #e2e8f0;
         }
 
-        .product-buttons a:hover {
+        .marketplace-links a:hover {
             transform: scale(1.1);
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-color: #10b981;
         }
         
-        .product-buttons img {
-            width: 1.75rem;
-            height: 1.75rem;
+        .marketplace-links img {
+            width: 1.5rem;
+            height: 1.5rem;
             object-fit: contain;
+        }
+
+        .whatsapp-btn {
+            background: #25d366 !important;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128c7e !important;
         }
 
         section {
@@ -280,6 +408,25 @@
             .products {
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
         }
         
         /* Smaller devices like phones */
@@ -295,6 +442,32 @@
             
             #search-bar {
                 width: 90%;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-btn {
+                font-size: 1rem;
+                padding: 0.875rem 1.5rem;
+            }
+            
+            .product-actions {
+                gap: 0.5rem;
+            }
+            
+            .contact-btn {
+                font-size: 0.875rem;
+                padding: 0.625rem 0.875rem;
             }
         }
     </style>
@@ -313,102 +486,171 @@
         </div>
     </header>
 
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Kaliteli İkinci El Ürünler</h1>
+            <p>İstanbul Esenyurt'ta en kaliteli ikinci el kapı, pencere ve mobilya ürünleri. Uygun fiyatlarla, güvenilir alışveriş için bizi arayın!</p>
+            <div class="cta-buttons">
+                <a href="tel:+905372100278" class="cta-btn primary">
+                    📞 Hemen Ara: 0537 210 0278
+                </a>
+                <a href="https://wa.me/905372100278" class="cta-btn" target="_blank">
+                    💬 WhatsApp ile İletişim
+                </a>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <section id="products" class="section-animated">
             <h2>Ürünlerimiz</h2>
             <div class="products" id="product-list">
                 <div class="product">
-                    <img src="pictures/kapı2.webp" alt="Second Hand Wooden Door">
+                    <img src="pictures/kapı2.webp" alt="Kaliteli Ahşap Kapı">
                     <div class="product-details">
-                        <h3>Ahşap Kapı</h3>
-                        <p>$19.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Premium Ahşap Kapı</h3>
+                        <div class="price">₺1,200</div>
+                        <div class="description">Sağlam ahşap malzemeden üretilmiş, kullanıma hazır kapı. Çok iyi durumda.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=Ahşap%20kapı%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="product">
-                    <img src="pictures/pencere.webp" alt="Used Modern Chair">
+                    <img src="pictures/pencere.webp" alt="Modern Pencere">
                     <div class="product-details">
-                        <h3>pencere</h3>
-                        <p>$29.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Modern PVC Pencere</h3>
+                        <div class="price">₺850</div>
+                        <div class="description">Çift camlı, enerji tasarruflu PVC pencere. Yeni gibi durumda.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=PVC%20pencere%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="product">
-                    <img src="pictures/kapı.jpg" alt="Pre-owned Vintage Table">
+                    <img src="pictures/kapı.jpg" alt="Güvenlik Çelik Kapı">
                     <div class="product-details">
-                        <h3>çelik kapı</h3>
-                        <p>$39.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Güvenlik Çelik Kapı</h3>
+                        <div class="price">₺2,100</div>
+                        <div class="description">A+ sınıf güvenlik özellikli çelik kapı. Çok kullanılmamış, temiz.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=Çelik%20kapı%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="product hidden-product">
-                    <img src="pictures/kapı.jpg" alt="Extra Product 1">
+                    <img src="pictures/kapı.jpg" alt="Klasik Ahşap Kapı">
                     <div class="product-details">
-                        <h3>Ekstra Ürün 1</h3>
-                        <p>$49.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Klasik Ahşap Kapı</h3>
+                        <div class="price">₺950</div>
+                        <div class="description">Geleneksel stil ahşap kapı. Restorasyona uygun, sağlam yapı.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=Klasik%20ahşap%20kapı%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="product hidden-product">
-                    <img src="pictures/kapı.jpg" alt="Extra Product 2">
+                    <img src="pictures/pencere.webp" alt="Balkon Kapısı">
                     <div class="product-details">
-                        <h3>Ekstra Ürün 2</h3>
-                        <p>$59.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Cam Balkon Kapısı</h3>
+                        <div class="price">₺1,350</div>
+                        <div class="description">Geniş cam yüzeyli balkon kapısı. Tertemiz durumda, hemen takılabilir.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=Balkon%20kapısı%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="product hidden-product">
-                    <img src="pictures/kapı.jpg" alt="Extra Product 3">
+                    <img src="pictures/kapı2.webp" alt="Lüks Kapı">
                     <div class="product-details">
-                        <h3>Ekstra Ürün 3</h3>
-                        <p>$69.99</p>
-                        <div class="product-buttons">
-                            <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com">
-                                <img src="pictures/sahibinden.jpg" alt="Sahibinden Logo">
+                        <h3>Lüks Ahşap Kapı</h3>
+                        <div class="price">₺2,800</div>
+                        <div class="description">Premium kalite ahşap kapı. Özel tasarım, villa ve ofis için ideal.</div>
+                        <div class="product-actions">
+                            <a href="tel:+905372100278" class="contact-btn">
+                                📞 Bilgi Al & Fiyat Sor
                             </a>
-                            <a href="https://www.letgo.com/" target="_blank" title="Letgo.com">
-                                <img src="pictures/letgo.png" alt="Letgo Logo">
-                            </a>
+                            <div class="marketplace-links">
+                                <a href="https://www.sahibinden.com/" target="_blank" title="Sahibinden.com'da Gör">
+                                    <img src="pictures/sahibinden.jpg" alt="Sahibinden">
+                                </a>
+                                <a href="https://www.letgo.com/" target="_blank" title="Letgo'da Gör">
+                                    <img src="pictures/letgo.png" alt="Letgo">
+                                </a>
+                                <a href="https://wa.me/905372100278?text=Lüks%20ahşap%20kapı%20hakkında%20bilgi%20almak%20istiyorum" target="_blank" class="whatsapp-btn" title="WhatsApp ile Sor">
+                                    💬
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -421,13 +663,83 @@
 
         <section id="about" class="section-animated">
             <h2>Hakkımızda</h2>
-            <p style="text-align: center;">Uygun fiyatlarla kaliteli ikinci el ürünler sunuyoruz. Kataloğumuzu keşfedin ve sizin için mükemmel olan ürünleri bulun.</p>
+            <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                    <h3 style="color: #1e293b; margin-bottom: 1rem;">🏠 Güvenilir İkinci El Uzmanı</h3>
+                    <p style="margin-bottom: 1rem; line-height: 1.8;">
+                        <strong>15 yıllık deneyimimizle</strong> İstanbul Esenyurt'ta kaliteli ikinci el ürünler sunuyoruz. 
+                        Kapı, pencere, mobilya ve diğer ev eşyalarında en uygun fiyatlarla en kaliteli ürünleri bulabilirsiniz.
+                    </p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                            <h4 style="margin: 0; color: #10b981;">Kalite Garantisi</h4>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b;">Tüm ürünler titizlikle seçilir</p>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">💰</div>
+                            <h4 style="margin: 0; color: #10b981;">Uygun Fiyat</h4>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b;">En iyi fiyat garantisi</p>
+                        </div>
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚚</div>
+                            <h4 style="margin: 0; color: #10b981;">Hızlı Teslimat</h4>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b;">İstanbul geneli servis</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="tel:+905372100278" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: #10b981; color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;">
+                        📞 Hemen Arayın: 0537 210 0278
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section id="contact" class="section-animated">
             <h2>İletişim</h2>
-            <p style="text-align: center;">E-posta: kandemirryigit@gmail.com</p>
-            <p style="text-align: center;">WhatsApp: 0537 210 0278</p>
+            <div style="max-width: 600px; margin: 0 auto;">
+                <div style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">📞</div>
+                            <h3 style="margin: 0 0 0.5rem; color: #1e293b;">Telefon</h3>
+                            <a href="tel:+905372100278" style="color: #10b981; text-decoration: none; font-weight: 600; font-size: 1.2rem;">
+                                0537 210 0278
+                            </a>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b;">Hemen arayın, fiyat alın!</p>
+                        </div>
+                        
+                        <div style="text-align: center; padding: 1rem;">
+                            <div style="font-size: 2.5rem; margin-bottom: 1rem;">💬</div>
+                            <h3 style="margin: 0 0 0.5rem; color: #1e293b;">WhatsApp</h3>
+                            <a href="https://wa.me/905372100278" target="_blank" style="color: #25d366; text-decoration: none; font-weight: 600; font-size: 1.2rem;">
+                                0537 210 0278
+                            </a>
+                            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; color: #64748b;">Mesaj gönderin, hızlı yanıt alın!</p>
+                        </div>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+                        <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">📧</div>
+                        <h3 style="margin: 0 0 0.5rem; color: #1e293b;">E-posta</h3>
+                        <a href="mailto:kandemirryigit@gmail.com" style="color: #3b82f6; text-decoration: none; font-weight: 500;">
+                            kandemirryigit@gmail.com
+                        </a>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                        <a href="tel:+905372100278" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: #10b981; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                            📞 Ara
+                        </a>
+                        <a href="https://wa.me/905372100278" target="_blank" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; background: #25d366; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; transition: all 0.3s ease;">
+                            💬 WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
         
         <section id="konumumuz" class="section-animated">
