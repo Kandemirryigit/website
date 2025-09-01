@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛠️ Admin Panel - Baba için</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f0f9ff;
+            color: #333;
+            padding: 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 1rem 0 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .image-upload {
+            border: 3px dashed #d1d5db;
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f9fafb;
+        }
+
+        .image-upload:hover {
+            border-color: #10b981;
+            background: #f0fdf4;
+        }
+
+        .image-upload input {
+            display: none;
+        }
+
+        .upload-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        .preview-image {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: none;
+            margin: 1rem auto;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            color: #065f46;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: none;
+            border: 2px solid #10b981;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quick-btn {
+            padding: 1.5rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 1rem;
+            text-decoration: none;
+            color: #374151;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .quick-btn:hover {
+            border-color: #10b981;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .product-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .btn-delete {
+            padding: 0.5rem 1rem;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛠️ Kolay Admin Panel</h1>
+            <p>Merhaba Baba! Buradan çok kolay bir şekilde yeni ürünler ekleyebilirsiniz.</p>
+        </div>
+
+        <div class="quick-actions">
+            <button onclick="window.open('index.html', '_blank')" class="quick-btn">
+                🌐 Websiteyi Gör
+            </button>
+            <button onclick="showProducts()" class="quick-btn">
+                📦 Ürünlerim (<span id="product-count">0</span>)
+            </button>
+        </div>
+
+        <div id="success-message" class="success-message">
+            🎉 Harika! Ürün eklendi. Websiteyi yenileyin ve kontrol edin!
+        </div>
+
+        <div class="form-card">
+            <div class="form-title">➕ Yeni Ürün Ekle</div>
+            
+            <form id="product-form">
+                <div class="form-group">
+                    <label for="name">🏷️ Ürün Adı (Zorunlu)</label>
+                    <input type="text" id="name" placeholder="Örnek: Güzel Ahşap Kapı" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="price">💰 Fiyat (₺) (Zorunlu)</label>
+                    <input type="number" id="price" placeholder="1500" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">📝 Açıklama (Zorunlu)</label>
+                    <textarea id="description" placeholder="Ürününüzün detaylarını yazın... 
+Örnek: Çok temiz, az kullanılmış, sağlam malzeme. İyi durumda." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">📂 Ne Tür Ürün?</label>
+                    <select id="category">
+                        <option value="kapı">🚪 Kapı</option>
+                        <option value="pencere">🪟 Pencere</option>
+                        <option value="mobilya">🪑 Mobilya</option>
+                        <option value="diğer">📦 Diğer</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>📸 Ürün Fotoğrafı (Zorunlu)</label>
+                    <div class="image-upload" onclick="document.getElementById('image').click()">
+                        <input type="file" id="image" accept="image/*" onchange="previewImage(this)" required>
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📷</div>
+                        <div class="upload-text">Fotoğraf Seç</div>
+                        <div class="upload-hint">Buraya tıklayın ve fotoğrafınızı seçin</div>
+                    </div>
+                    <img id="image-preview" class="preview-image">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    ✅ Ürünü Websiteye Ekle
+                </button>
+            </form>
+        </div>
+
+        <div id="products-section" class="form-card" style="display: none;">
+            <div class="form-title">📦 Eklediğiniz Ürünler</div>
+            <div id="products-list">
+                <!-- Products will be shown here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Products storage key
+        const STORAGE_KEY = 'ikinci-el-products';
+
+        // Get products from storage
+        function getProducts() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        }
+
+        // Save products to storage
+        function saveProducts(products) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(products));
+            updateProductCount();
+        }
+
+        // Update product count
+        function updateProductCount() {
+            const count = getProducts().length;
+            document.getElementById('product-count').textContent = count;
+        }
+
+        // Preview uploaded image
+        function previewImage(input) {
+            const preview = document.getElementById('image-preview');
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Add new product
+        document.getElementById('product-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const price = document.getElementById('price').value;
+            const description = document.getElementById('description').value.trim();
+            const category = document.getElementById('category').value;
+            const imageFile = document.getElementById('image').files[0];
+
+            // Validation
+            if (!name || !price || !description) {
+                alert('❌ Lütfen tüm zorunlu alanları doldurun!');
+                return;
+            }
+
+            if (!imageFile) {
+                alert('❌ Lütfen bir fotoğraf seçin!');
+                return;
+            }
+
+            // Process image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const products = getProducts();
+                
+                const newProduct = {
+                    id: Date.now(),
+                    name: name,
+                    price: parseInt(price),
+                    description: description,
+                    category: category,
+                    image: e.target.result, // Base64 image
+                    dateAdded: new Date().toLocaleDateString('tr-TR'),
+                    timeAdded: new Date().toLocaleTimeString('tr-TR')
+                };
+
+                products.push(newProduct);
+                saveProducts(products);
+                
+                // Show success message
+                const successMsg = document.getElementById('success-message');
+                successMsg.style.display = 'block';
+                successMsg.innerHTML = `🎉 "${name}" başarıyla eklendi! Websiteyi yenileyin ve kontrol edin.`;
+                
+                setTimeout(() => {
+                    successMsg.style.display = 'none';
+                }, 7000);
+
+                // Reset form
+                document.getElementById('product-form').reset();
+                document.getElementById('image-preview').style.display = 'none';
+                
+                // Update products list if visible
+                if (document.getElementById('products-section').style.display !== 'none') {
+                    showProducts();
+                }
+            };
+            reader.readAsDataURL(imageFile);
+        });
+
+        // Show products list
+        function showProducts() {
+            const section = document.getElementById('products-section');
+            const list = document.getElementById('products-list');
+            
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
+            
+            const products = getProducts();
+            list.innerHTML = '';
+
+            if (products.length === 0) {
+                list.innerHTML = `
+                    <div style="text-align: center; padding: 3rem; color: #6b7280;">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">📦</div>
+                        <h3>Henüz ürün eklenmemiş</h3>
+                        <p>Yukarıdaki formdan ilk ürününüzü ekleyin!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            products.reverse().forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product-card';
+                productDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3 style="margin: 0 0 0.5rem; color: #1e293b;">${product.name}</h3>
+                        <div style="color: #10b981; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.5rem;">₺${product.price}</div>
+                        <p style="color: #6b7280; margin: 0 0 0.5rem; font-size: 0.95rem;">${product.description.substring(0, 100)}${product.description.length > 100 ? '...' : ''}</p>
+                        <small style="color: #9ca3af;">📅 ${product.dateAdded} - ⏰ ${product.timeAdded}</small>
+                    </div>
+                    <button onclick="deleteProduct(${product.id})" class="btn-delete" title="Ürünü Sil">
+                        🗑️ Sil
+                    </button>
+                `;
+                list.appendChild(productDiv);
+            });
+        }
+
+        // Delete product
+        function deleteProduct(id) {
+            const products = getProducts();
+            const product = products.find(p => p.id === id);
+            
+            if (confirm(`❓ "${product.name}" ürününü silmek istediğiniz emin misiniz?\n\nBu işlem geri alınamaz!`)) {
+                const updatedProducts = products.filter(p => p.id !== id);
+                saveProducts(updatedProducts);
+                showProducts();
+                
+                alert('✅ Ürün silindi! Websiteyi yenileyin.');
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProductCount();
+        });
+    </script>
+</body>
+</html>
